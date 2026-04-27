@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Collection Game</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="pause-screen" style="display:none;">
+        <h1>PAUSED</h1>
+        <button class="btn-action" style="width:250px; font-size:1.2rem; margin-top:20px; background:#2ecc71;"
+            onclick="GameApp.togglePause()">▶ Lanjutkan</button>
+    </div>
+
+    <div id="main-menu" class="screen">
+        <div class="menu-content">
+            <h1>ARCADE COLLECTION</h1>
+            <p class="subtitle">Koleksi 20 Permainan</p>
+            <div class="menu-grid">
+                <button class="btn-menu" onclick="GameApp.switch('tictactoe')">Tic Tac Toe</button>
+                <button class="btn-menu" onclick="GameApp.switch('ulartangga')">Ular Tangga</button>
+                <button class="btn-menu" onclick="GameApp.switch('ular')">Snake Game</button>
+                <button class="btn-menu" onclick="GameApp.switch('pingpong')">Ping Pong</button>
+                <button class="btn-menu" onclick="GameApp.switch('pukultikus')">Pukul Tikus</button>
+                <button class="btn-menu" onclick="GameApp.switch('cocokkartu')">Cocok Kartu</button>
+                <button class="btn-menu" onclick="GameApp.switch('suitjari')">Suit Jari</button>
+                <button class="btn-menu" onclick="GameApp.switch('tebakangka')">Tebak Angka</button>
+                <button class="btn-menu" onclick="GameApp.switch('sapuranjau')">Sapu Ranjau</button>
+                <button class="btn-menu" onclick="GameApp.switch('ingatpola')">Ingat Pola</button>
+                <button class="btn-menu" onclick="GameApp.switch('tebakwarna')">Tebak Warna</button>
+                <button class="btn-menu" onclick="GameApp.switch('tangkapapel')">Tangkap Apel</button>
+                <button class="btn-menu" onclick="GameApp.switch('flappyburung')">Flappy Burung</button>
+                <button class="btn-menu" onclick="GameApp.switch('dinolari')">Dino Lari</button>
+                <button class="btn-menu" onclick="GameApp.switch('balapmobil')">Balap Mobil</button>
+                <button class="btn-menu" onclick="GameApp.switch('pantulbata')">Pantul Bata</button>
+                <button class="btn-menu" onclick="GameApp.switch('tembakpesawat')">Tembak Pesawat</button>
+                <button class="btn-menu" onclick="GameApp.switch('tembaktarget')">Tembak Target</button>
+                <button class="btn-menu" onclick="GameApp.switch('balapklik')">Balap Klik</button>
+                <button class="btn-menu" onclick="GameApp.switch('slotmesin')">Slot Mesin</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="tictactoe" class="screen" style="display:none;">
+        <div class="game-header">
+            <button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tic Tac Toe</h2>
+        </div>
+        <div class="app-container">
+            <div id="ttt-menu" style="width:100%;">
+                <h3 style="margin-bottom:20px;">Pilih Mode</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                    <button class="btn-action" style="background:#e67e22;" onclick="TicTacToe.startMode('bot')">🤖 VS
+                        Bot</button>
+                    <button class="btn-action" style="background:#3498db;" onclick="TicTacToe.startMode('2p')">👥 2
+                        Pemain</button>
+                </div>
+            </div>
+            <div id="ttt-game-area" style="display:none; flex-direction:column; align-items:center; width:100%;">
+                <div id="ttt-board" class="ttt-grid"></div>
+                <div class="status-bar"><span id="ttt-status">Giliran: X</span></div>
+                <div class="btn-group" style="margin-top:15px;">
+                    <button class="btn-action" style="background:#e74c3c;"
+                        onclick="TicTacToe.startMode(TicTacToe.lm)">Reset</button>
+                    <button class="btn-action" style="background:#7f8c8d;" onclick="TicTacToe.init()">Ganti
+                        Mode</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ulartangga" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Ular Tangga</h2>
+        </div>
+        <div class="app-container">
+            <div id="sl-menu" style="width:100%;">
+                <h3 style="margin-bottom:20px;">Pilih Mode</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;"><button class="btn-action"
+                        style="background:#e67e22;" onclick="UlarTangga.startMode('bot')">🤖 VS Bot</button><button
+                        class="btn-action" style="background:#3498db;" onclick="UlarTangga.startMode('2p')">👥 2
+                        Pemain</button><button class="btn-action" style="background:#2ecc71;"
+                        onclick="UlarTangga.startMode('3p')">👨‍👩‍👦 3 P</button><button class="btn-action"
+                        style="background:#9b59b6;" onclick="UlarTangga.startMode('4p')">👨‍👩‍👧‍👦 4 P</button></div>
+            </div>
+            <div id="sl-game-area" class="sl-layout" style="display:none;">
+                <div id="sl-board" class="sl-grid"></div>
+                <div class="sl-sidebar">
+                    <div class="dice-section">
+                        <div id="sl-dice" class="dice">-</div><button id="sl-roll-btn" class="btn-action"
+                            onclick="UlarTangga.roll()">Kocok Dadu</button>
+                    </div>
+                    <div class="info-card">
+                        <p id="sl-status" style="font-weight:bold; margin-bottom:5px;">Giliran: P1</p>
+                        <div id="sl-stats" class="player-stats"></div>
+                    </div>
+                </div>
+                <div class="btn-group"><button class="btn-action" style="background:#e74c3c;"
+                        onclick="UlarTangga.startMode(UlarTangga.lm)">Reset</button><button class="btn-action"
+                        style="background:#7f8c8d;" onclick="UlarTangga.init()">Ganti Mode</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="ular" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Snake Game</h2>
+        </div>
+        <div class="app-container">
+            <div id="snake-menu" style="width:100%;">
+                <h3 style="margin-bottom:20px;">Mode Area</h3><button class="btn-action"
+                    style="margin-bottom:15px; background:#3498db;" onclick="GameUlar.startMode(true)">🌐 Tembus
+                    Tembok</button><button class="btn-action" style="background:#e74c3c;"
+                    onclick="GameUlar.startMode(false)">🧱 Ada Batasan</button>
+            </div>
+            <div id="snake-game-area" style="display:none; width:100%;">
+                <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="snake-score">0</span></div><canvas
+                    id="snake-canvas" width="400" height="400" class="game-canvas"></canvas>
+                <p class="controls-hint">W, A, S, D (Arah)</p>
+                <div class="btn-group"><button class="btn-action" style="background:#e74c3c;"
+                        onclick="GameUlar.startMode(GameUlar.bl)">Reset Ular</button><button class="btn-action"
+                        style="background:#7f8c8d;" onclick="GameUlar.init()">← Mode</button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pingpong" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Ping Pong</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px; display:flex; justify-content:space-around;">
+                <span>Pemain: <span id="pong-score-p">0</span></span><span>Bot: <span id="pong-score-b">0</span></span>
+            </div><canvas id="pong-canvas" width="500" height="300" class="game-canvas"></canvas>
+            <p class="controls-hint">W, S (Naik Turun)</p>
+            <div class="btn-group"><button class="btn-action" onclick="PingPong.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="PingPong.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="pukultikus" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Pukul Tikus</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="display:flex; justify-content:space-between; margin-bottom:15px;"><span>Skor:
+                    <span id="mole-score">0</span></span><span>Waktu: <span id="mole-time">30</span>s</span></div>
+            <div id="mole-board" class="mole-grid"></div>
+            <div class="btn-group" style="margin-top:20px;"><button class="btn-action"
+                    onclick="PukulTikus.start()">Mulai</button><button class="btn-action" style="background:#e74c3c;"
+                    onclick="PukulTikus.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="cocokkartu" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Cocok Kartu</h2>
+        </div>
+        <div class="app-container">
+            <div id="memory-board" class="memory-grid"></div>
+            <div class="status-bar" id="memory-status">Cocokkan pasangan!</div>
+            <div class="btn-group"><button class="btn-action" style="background:#e74c3c;"
+                    onclick="CocokKartu.init()">Acak Ulang</button></div>
+        </div>
+    </div>
+
+    <div id="suitjari" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Suit Jari</h2>
+        </div>
+        <div class="app-container">
+            <div class="suit-arena">
+                <div class="suit-player">
+                    <h3>Kamu</h3>
+                    <div id="suit-p-icon" class="suit-icon">🤔</div>
+                </div>
+                <div class="suit-vs">VS</div>
+                <div class="suit-player">
+                    <h3>Bot</h3>
+                    <div id="suit-b-icon" class="suit-icon">🤖</div>
+                </div>
+            </div>
+            <div class="status-bar" id="suit-status">Pilih senjatamu!</div>
+            <div class="btn-group"><button class="btn-action" onclick="SuitJari.play(0)">Batu ✊</button><button
+                    class="btn-action" onclick="SuitJari.play(1)">Gunting ✌️</button><button class="btn-action"
+                    onclick="SuitJari.play(2)">Kertas ✋</button></div>
+        </div>
+    </div>
+
+    <div id="tebakangka" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tebak Angka</h2>
+        </div>
+        <div class="app-container">
+            <p>Tebak 1 hingga 100!</p><input type="number" id="tebak-input" class="input-box" placeholder="Angka...">
+            <div class="status-bar" id="tebak-status">Menunggu...</div>
+            <div class="btn-group"><button class="btn-action" onclick="TebakAngka.check()">Tebak</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="TebakAngka.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="sapuranjau" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Sapu Ranjau</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor Bertahan: <span id="mines-score">0</span> / 20
+            </div>
+            <div id="mines-board" class="mines-grid"></div>
+            <div class="btn-group" style="margin-top:15px;"><button class="btn-action" style="background:#e74c3c;"
+                    onclick="SapuRanjau.init()">Reset Papan</button></div>
+        </div>
+    </div>
+
+    <div id="ingatpola" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Ingat Pola</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;" id="simon-status">Tekan Mulai! Skor: 0</div>
+            <div class="simon-grid">
+                <div class="simon-btn" id="simon-0" onclick="IngatPola.click(0)" style="background:#e74c3c"></div>
+                <div class="simon-btn" id="simon-1" onclick="IngatPola.click(1)" style="background:#3498db"></div>
+                <div class="simon-btn" id="simon-2" onclick="IngatPola.click(2)" style="background:#f1c40f"></div>
+                <div class="simon-btn" id="simon-3" onclick="IngatPola.click(3)" style="background:#2ecc71"></div>
+            </div>
+            <div class="btn-group" style="margin-top:20px;"><button class="btn-action"
+                    onclick="IngatPola.start()">Mulai</button><button class="btn-action" style="background:#e74c3c;"
+                    onclick="IngatPola.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="tebakwarna" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tebak Warna</h2>
+        </div>
+        <div class="app-container">
+            <div id="warna-target"
+                style="width:100%; height:120px; border-radius:10px; margin-bottom:15px; border:3px solid white;"></div>
+            <h3 id="warna-rgb" style="letter-spacing:2px; margin-bottom:10px;">RGB(?, ?, ?)</h3>
+            <div class="status-bar" id="warna-status">Pilih kotak yang sesuai!</div>
+            <div id="warna-opts" style="display:flex; gap:10px; margin-top:15px; width:100%;"></div>
+        </div>
+    </div>
+
+    <div id="tangkapapel" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tangkap Apel</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Ditangkap: <span id="catch-score">0</span></div><canvas
+                id="catch-canvas" width="400" height="400" class="game-canvas" style="background:#87CEEB;"></canvas>
+            <p class="controls-hint">A, D (Kiri Kanan)</p>
+            <div class="btn-group"><button class="btn-action" onclick="TangkapApel.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="TangkapApel.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="flappyburung" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Flappy Burung</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="flappy-score">0</span></div><canvas
+                id="flappy-canvas" width="400" height="400" class="game-canvas" style="background:#87CEEB;"></canvas>
+            <p class="controls-hint">W / SPASI (Lompat)</p>
+            <div class="btn-group"><button class="btn-action" onclick="FlappyBurung.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="FlappyBurung.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="dinolari" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Dino Lari</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="dino-score">0</span></div><canvas
+                id="dino-canvas" width="400" height="200" class="game-canvas" style="background:#ecf0f1;"></canvas>
+            <p class="controls-hint">W / SPASI (Lompat)</p>
+            <div class="btn-group"><button class="btn-action" onclick="DinoLari.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="DinoLari.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="balapmobil" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Balap Mobil</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="car-score">0</span></div><canvas
+                id="car-canvas" width="300" height="400" class="game-canvas" style="background:#2c3e50;"></canvas>
+            <p class="controls-hint">A, D (Kiri Kanan)</p>
+            <div class="btn-group"><button class="btn-action" onclick="BalapMobil.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="BalapMobil.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="pantulbata" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Pantul Bata</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="breakout-score">0</span></div><canvas
+                id="breakout-canvas" width="400" height="300" class="game-canvas"></canvas>
+            <p class="controls-hint">Mouse (Geser Papan)</p>
+            <div class="btn-group"><button class="btn-action" onclick="PantulBata.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="PantulBata.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="tembakpesawat" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tembak Pesawat</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:15px;">Skor: <span id="shooter-score">0</span></div><canvas
+                id="shooter-canvas" width="400" height="400" class="game-canvas" style="background:#000;"></canvas>
+            <p class="controls-hint">A, D (Geser), SPASI (Tembak)</p>
+            <div class="btn-group"><button class="btn-action" onclick="TembakPesawat.start()">Mulai</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="TembakPesawat.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="tembaktarget" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Tembak Target</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="display:flex; justify-content:space-between; margin-bottom:15px;"><span>Skor:
+                    <span id="aim-score">0</span></span><span>Waktu: <span id="aim-time">30</span></span></div><canvas
+                id="aim-canvas" width="400" height="400" class="game-canvas" style="cursor:crosshair;"></canvas>
+            <div class="btn-group" style="margin-top:20px;"><button class="btn-action"
+                    onclick="TembakTarget.start()">Mulai Game</button><button class="btn-action"
+                    style="background:#e74c3c;" onclick="TembakTarget.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="balapklik" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Balap Klik</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="display:flex; justify-content:space-between; margin-bottom:20px;"><span>Skor:
+                    <span id="click-score">0</span></span><span>Waktu: <span id="click-time">10</span></span></div>
+            <button id="click-btn"
+                style="width:180px; height:180px; border-radius:50%; font-size:2.5rem; font-weight:bold; cursor:pointer; border:5px solid var(--gold); background:var(--accent); color:white; margin:20px 0;"
+                onclick="BalapKlik.clk()">KLIK!</button>
+            <div class="btn-group"><button class="btn-action" style="background:#e74c3c;"
+                    onclick="BalapKlik.init()">Reset</button></div>
+        </div>
+    </div>
+
+    <div id="slotmesin" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Slot Mesin</h2>
+        </div>
+        <div class="app-container">
+            <div class="status-bar" style="margin-bottom:20px;">Koin: <span id="slot-coin">100</span></div>
+            <div id="slot-reels"
+                style="display:flex; gap:15px; font-size:4rem; background:white; padding:20px; border-radius:10px; border:5px solid var(--gold); margin-bottom:20px; color:#111;">
+                <div id="r1">🍒</div>
+                <div id="r2">🍒</div>
+                <div id="r3">🍒</div>
+            </div>
+            <div class="status-bar" id="slot-status" style="margin-bottom:15px; font-size:1rem;">Semoga Beruntung!</div>
+            <div class="btn-group"><button class="btn-action" onclick="SlotMesin.spin()">SPIN (10 Koin)</button><button
+                    class="btn-action" style="background:#e74c3c;" onclick="SlotMesin.init()">Reset Koin</button></div>
+        </div>
+    </div>
+
+    <div id="puzzle" class="screen" style="display:none;">
+        <div class="game-header"><button class="btn-back" onclick="GameApp.switch('main-menu')">← Menu</button>
+            <h2>Teka Teki Geser</h2>
+        </div>
+        <div class="app-container">
+            <div id="puzzle-board" class="puzzle-grid"></div>
+            <div class="btn-group"><button class="btn-action" style="background:#e74c3c; margin-top:20px;"
+                    onclick="Puzzle.init()">Acak Ulang</button></div>
+        </div>
+    </div>
+
+    <footer class="global-footer"><span style="font-size: 0.8rem; opacity: 0.8;">Dibuat & Dikembangkan Oleh:
+            <strong><a href="https://github.com/lamberthrumpaidus" target="_blank"
+                    style="color: inherit; text-decoration: none;">Lamberth Rumpaidus</a></strong>
+
+            <script src="game_resource/aplikasiutama.js"></script>
+            <script src="game_resource/tictactoe.js"></script>
+            <script src="game_resource/ulartangga.js"></script>
+            <script src="game_resource/gameular.js"></script>
+            <script src="game_resource/pingpong.js"></script>
+            <script src="game_resource/pukultikus.js"></script>
+            <script src="game_resource/cocokkartu.js"></script>
+            <script src="game_resource/suitjari.js"></script>
+            <script src="game_resource/tebakangka.js"></script>
+            <script src="game_resource/sapuranjau.js"></script>
+            <script src="game_resource/ingatpola.js"></script>
+            <script src="game_resource/tebakwarna.js"></script>
+            <script src="game_resource/tangkapapel.js"></script>
+            <script src="game_resource/flappyburung.js"></script>
+            <script src="game_resource/dinolari.js"></script>
+            <script src="game_resource/balapmobil.js"></script>
+            <script src="game_resource/pantulbata.js"></script>
+            <script src="game_resource/tembakpesawat.js"></script>
+            <script src="game_resource/tembaktarget.js"></script>
+            <script src="game_resource/balapklik.js"></script>
+            <script src="game_resource/slotmesin.js"></script>
+            <script src="game_resource/puzzle.js"></script>
+</body>
+
+</html>

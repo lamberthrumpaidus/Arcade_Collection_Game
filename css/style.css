@@ -1,0 +1,548 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary: #2c3e50;
+    --accent: #e74c3c;
+    --success: #27ae60;
+    --gold: #f1c40f;
+    --light: #ecf0f1;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#pause-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--gold);
+}
+
+#pause-screen h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+#pause-screen p {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.screen {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 80px;
+    overflow-y: auto;
+}
+
+.menu-content {
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    border: 2px solid var(--gold);
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-menu {
+    padding: 12px 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.btn-menu:hover {
+    background: var(--gold);
+    color: #000;
+    transform: translateY(-2px);
+}
+
+.game-header {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    margin-bottom: 10px;
+}
+
+.game-header h2 {
+    margin: 0;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+}
+
+.btn-back {
+    position: static;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-back:hover {
+    background: white;
+    color: black;
+}
+
+.app-container {
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid var(--gold);
+    text-align: center;
+    z-index: 5;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 500px;
+    min-height: 500px;
+    margin-top: 0;
+}
+
+.app-fixed {
+    width: 100%;
+    max-width: 500px;
+}
+
+.game-canvas {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid var(--gold);
+    border-radius: 8px;
+    background: #111;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.controls-hint {
+    font-size: 0.8rem;
+    margin: 10px 0;
+    opacity: 0.7;
+}
+
+.input-box {
+    padding: 15px;
+    width: 80%;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.btn-action {
+    padding: 12px 10px;
+    background: var(--success);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    flex: 1;
+}
+
+.btn-action:hover {
+    opacity: 0.9;
+}
+
+.btn-action:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.status-bar {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.ttt-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.ttt-cell {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sl-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.sl-sidebar {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+}
+
+.sl-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 35px);
+    grid-template-rows: repeat(10, 35px);
+    border: 2px solid var(--gold);
+    background: rgba(255, 255, 255, 0.05);
+    width: 354px;
+    height: 354px;
+}
+
+.sl-cell {
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    position: relative;
+}
+
+.dice {
+    font-size: 2rem;
+    background: white;
+    color: var(--primary);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.8rem;
+    flex: 1;
+}
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.dot-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.sl-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    border: 1px solid white;
+}
+
+.p0 {
+    background: #e74c3c;
+    top: 2px;
+    left: 2px;
+}
+
+.p1 {
+    background: #3498db;
+    top: 2px;
+    right: 2px;
+}
+
+.p2 {
+    background: #2ecc71;
+    bottom: 2px;
+    left: 2px;
+}
+
+.p3 {
+    background: #9b59b6;
+    bottom: 2px;
+    right: 2px;
+}
+
+.mole-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-gap: 15px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.mole-hole {
+    width: 80px;
+    height: 80px;
+    background: #8e44ad;
+    border-radius: 50%;
+    border: 5px solid #2c3e50;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+.mole-head {
+    width: 60px;
+    height: 60px;
+    background: #e67e22;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: -70px;
+    left: 5px;
+    transition: 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1.8rem;
+}
+
+.mole-head.up {
+    bottom: 0;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.memory-card {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border: 2px solid var(--gold);
+    transition: 0.3s;
+}
+
+.memory-card.flipped {
+    background: white;
+    cursor: default;
+}
+
+.suit-arena {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.suit-player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.suit-icon {
+    font-size: 3.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--gold);
+}
+
+.suit-vs {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.mines-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 45px);
+    grid-gap: 5px;
+    justify-content: center;
+}
+
+.mine-cell {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.mine-cell.open {
+    background: rgba(255, 255, 255, 0.3);
+    cursor: default;
+}
+
+.simon-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 220px;
+    margin: 0 auto;
+}
+
+.simon-btn {
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    opacity: 0.5;
+    cursor: pointer;
+    border: 3px solid #111;
+    transition: 0.1s;
+}
+
+.simon-btn.active {
+    opacity: 1;
+    transform: scale(1.05);
+    border-color: white;
+}
+
+.global-footer {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid var(--gold);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    line-height: 1.4;
+}
