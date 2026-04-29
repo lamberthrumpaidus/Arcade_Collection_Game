@@ -22,7 +22,7 @@
 ## 🌟 Fitur Unggulan
 
 - **🤖 Smart Bot AI**: Lawan kecerdasan buatan pada *Tic Tac Toe* dan *Ular Tangga* yang punya logika menantang.
-- **🎯 Pixel Perfect Hitbox**: Perbaikan total pada logika tabrakan (burung, mobil, dino). Nggak ada lagi istilah "tembus tembok" atau bug *immortal*.
+- **🎯 Pixel Perfect Hitbox**: Perbaikan total pada logika tabrakan (burung, mobil, dino).
 
 ---
 
