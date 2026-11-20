@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcade Collection Game</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Arcade Collection — Mini Game Hub</title><meta name="theme-color" content="#101029"><meta name="description" content="Mini game collection dengan pencarian, favorit, riwayat, dan permainan klasik yang seru."><link rel="icon" type="image/svg+xml" href="app-logo.svg">
+    <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/arcade-upgrades.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 /* L/R FUTURE UI 2026 — non-destructive visual refresh */
@@ -19,7 +19,7 @@
 body{background:radial-gradient(ellipse at 18% 0%,#06343d 0%,transparent 45%),radial-gradient(ellipse at 85% 100%,#0d1639,transparent 50%),#050914;color:#f0fbff}.menu-content{background:linear-gradient(145deg,rgba(12,27,42,.88),rgba(9,18,31,.88));border:1px solid var(--lr-line);border-radius:28px;box-shadow:0 25px 90px #0007,0 0 60px #00d8bd12;backdrop-filter:blur(14px);padding:clamp(18px,3vw,34px)}.lr-arcade-brand{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 auto 20px}.lr-arcade-brand>span,.lr-game-caption{font:600 10px 'Poppins',sans-serif;letter-spacing:.22em;color:#83c9c7}.lr-arcade-brand .lr-monogram{width:clamp(105px,15vw,164px)}#main-menu .menu-grid{gap:clamp(8px,1.4vw,16px)}.btn-menu{border-radius:15px!important;border:1px solid #6fddda35!important;background:linear-gradient(145deg,#17283d,#0e1d2c)!important;box-shadow:inset 0 1px #ffffff12,0 8px 20px #0002;transition:transform .18s,box-shadow .18s,border-color .18s!important}.btn-menu:hover{transform:translateY(-3px);border-color:#21d9c6!important;box-shadow:0 12px 28px #00beaa25}.global-footer{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:12px!important}.global-footer .lr-monogram{width:90px}button{touch-action:manipulation}@media(max-width:600px){.menu-content{border-radius:20px;padding:15px}.lr-arcade-brand{margin-bottom:12px}.btn-menu{min-height:48px}} </style></head>
 
 <body>
-    <div id="pause-screen" style="display:none;">
+    <div id="arcade-toast" class="arcade-toast" role="status" aria-live="polite"></div><div id="pause-screen" style="display:none;">
         <h1>PAUSED</h1>
         <button class="btn-action" style="width:250px; font-size:1.2rem; margin-top:20px; background:#2ecc71;"
             onclick="GameApp.togglePause()">▶ Lanjutkan</button>
@@ -27,8 +27,8 @@ body{background:radial-gradient(ellipse at 18% 0%,#06343d 0%,transparent 45%),ra
 
     <div id="main-menu" class="screen">
         <div class="menu-content">
-            <div class="lr-arcade-brand"><a class="lr-brand-link" href="https://github.com/lamberthrumpaidus" target="_blank" rel="noopener noreferrer" aria-label="L/R — kreator"><img class="lr-monogram" src="brand-lr.svg" alt="L/R — Lamberth Rumpaidus" loading="lazy" decoding="async"></a><span>20 GAMES / ONE UNIVERSE</span></div><h1>ARCADE COLLECTION</h1>
-            <p class="subtitle">Koleksi 20 Permainan</p>
+            <div class="lr-arcade-brand"><img class="arcade-app-logo" src="app-logo.svg" alt="Logo aplikasi Arcade Collection" width="92" height="92"><span>ONE HUB • MANY ADVENTURES</span></div><h1>ARCADE COLLECTION</h1>
+            <p class="subtitle">Koleksi 20 Permainan</p><section class="arcade-tools" aria-label="Temukan permainan"><input class="arcade-search" type="search" id="arcade-search" placeholder="Cari permainan… (tekan /)" aria-label="Cari permainan" autocomplete="off"><div class="arcade-categories" id="arcade-categories" aria-label="Kategori permainan"></div><div class="arcade-actions"><button type="button" id="arcade-random">Main Acak</button><button type="button" id="arcade-last">Lanjut Terakhir</button><button type="button" id="arcade-fullscreen">Layar Penuh</button><button type="button" id="arcade-share">Bagikan Game</button><button type="button" id="arcade-motion" aria-pressed="false">Animasi normal</button></div><label class="arcade-fave-only"><input type="checkbox" id="arcade-only-faves"> Tampilkan favorit saja</label><div class="arcade-recent" id="arcade-recent" aria-label="Permainan terakhir"></div><span class="arcade-count"><span id="arcade-visible-count">0</span> game ditampilkan</span><div class="arcade-empty" id="arcade-empty" hidden>Tidak ditemukan permainan yang cocok.</div></section>
             <div class="menu-grid">
                 <button class="btn-menu" onclick="GameApp.switch('tictactoe')">Tic Tac Toe</button>
                 <button class="btn-menu" onclick="GameApp.switch('ulartangga')">Ular Tangga</button>
@@ -415,6 +415,6 @@ body{background:radial-gradient(ellipse at 18% 0%,#06343d 0%,transparent 45%),ra
             <script src="game_resource/balapklik.js"></script>
             <script src="game_resource/slotmesin.js"></script>
             <script src="game_resource/puzzle.js"></script>
-</body>
+<script src="game_resource/ux-upgrades.js"></script></body>
 
 </html>
