@@ -1,3 +1,4 @@
+/* ALL Create by LamberthRumpaidus */
 (() => {
   const key = "arcade-v3";
   const menu = document.getElementById("main-menu");
