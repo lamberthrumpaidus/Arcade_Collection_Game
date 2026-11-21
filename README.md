@@ -1,31 +1,29 @@
 <div align="center">
-  <img src="./app-logo.svg" alt="Logo Arcade Collection" width="90" />
+  <img src="./app-logo.svg" alt="Logo Arcade Collection" width="88" />
   <h1>Arcade Collection</h1>
-  <p>20 mini game klasik dalam satu tempat.</p>
-  <p><a href="https://arcadecollectiongame.netlify.app/">Mainkan sekarang</a> · <a href="https://github.com/lamberthrumpaidus/lamberthrumpaidus">Profil L/R</a></p>
+  <p>Kumpulan 20 permainan sederhana dalam satu aplikasi web.</p>
+  <p><a href="https://arcadecollectiongame.netlify.app/">Mainkan</a> · <a href="https://github.com/lamberthrumpaidus/lamberthrumpaidus">Profil utama</a></p>
 </div>
 
 ---
 
-### Tentang proyek
+## Tentang proyek
 
-Koleksi permainan berbasis browser dengan kategori yang beragam—mulai dari strategi, aksi, refleks, hingga puzzle. Tersedia pencarian permainan, daftar favorit, dan riwayat permainan terakhir.
+Arcade Collection menyajikan permainan dengan beragam mekanik, mulai dari strategi, teka-teki, hingga permainan refleks. Halaman utama menyediakan pencarian, penanda favorit, dan riwayat permainan terakhir untuk mempermudah navigasi.
 
-| Kategori | Contoh permainan |
+| Jenis permainan | Contoh |
 |---|---|
 | Strategi | Tic Tac Toe, Ular Tangga, Sapu Ranjau |
-| Aksi & refleks | Snake, Flappy Burung, Dino Lari, Balap Mobil |
-| Logika | Cocok Kartu, Tebak Angka, Ingat Pola, Puzzle |
-| Kasual | Ping Pong, Pukul Tikus, Suit Jari, Slot Mesin |
+| Refleks dan aksi | Flappy Burung, Dino Lari, Balap Mobil |
+| Logika | Cocok Kartu, Tebak Angka, Puzzle |
+| Kasual | Ping Pong, Suit Jari, Slot Mesin |
 
-**Teknologi:** HTML · CSS · JavaScript
+**Teknologi:** HTML, CSS, dan JavaScript.
 
-### Menjalankan
-
-Buka [versi online](https://arcadecollectiongame.netlify.app/), atau jalankan secara lokal:
+## Menjalankan secara lokal
 
 ```bash
 python -m http.server 8000
 ```
 
-Lalu buka `http://localhost:8000` di browser.
+Buka `http://localhost:8000` setelah server berjalan.
