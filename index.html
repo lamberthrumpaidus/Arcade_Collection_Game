@@ -22,7 +22,31 @@
 :where(button,a,input,select,textarea):focus-visible{outline:2px solid var(--lr-aqua);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.lr-brand-link{transition:none!important}}
 
-body{background:radial-gradient(ellipse at 18% 0%,#06343d 0%,transparent 45%),radial-gradient(ellipse at 85% 100%,#0d1639,transparent 50%),#050914;color:#f0fbff}.menu-content{background:linear-gradient(145deg,rgba(12,27,42,.88),rgba(9,18,31,.88));border:1px solid var(--lr-line);border-radius:28px;box-shadow:0 25px 90px #0007,0 0 60px #00d8bd12;backdrop-filter:blur(14px);padding:clamp(18px,3vw,34px)}.lr-arcade-brand{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 auto 20px}.lr-arcade-brand>span,.lr-game-caption{font:600 10px 'Poppins',sans-serif;letter-spacing:.22em;color:#83c9c7}.lr-arcade-brand .lr-monogram{width:clamp(105px,15vw,164px)}#main-menu .menu-grid{gap:clamp(8px,1.4vw,16px)}.btn-menu{border-radius:15px!important;border:1px solid #6fddda35!important;background:linear-gradient(145deg,#17283d,#0e1d2c)!important;box-shadow:inset 0 1px #ffffff12,0 8px 20px #0002;transition:transform .18s,box-shadow .18s,border-color .18s!important}.btn-menu:hover{transform:translateY(-3px);border-color:#21d9c6!important;box-shadow:0 12px 28px #00beaa25}.global-footer{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:12px!important}.global-footer .lr-monogram{width:90px}button{touch-action:manipulation}@media(max-width:600px){.menu-content{border-radius:20px;padding:15px}.lr-arcade-brand{margin-bottom:12px}.btn-menu{min-height:48px}} </style></head>
+body{background:radial-gradient(ellipse at 18% 0%,#06343d 0%,transparent 45%),radial-gradient(ellipse at 85% 100%,#0d1639,transparent 50%),#050914;color:#f0fbff}.menu-content{background:linear-gradient(145deg,rgba(12,27,42,.88),rgba(9,18,31,.88));border:1px solid var(--lr-line);border-radius:28px;box-shadow:0 25px 90px #0007,0 0 60px #00d8bd12;backdrop-filter:blur(14px);padding:clamp(18px,3vw,34px)}.lr-arcade-brand{display:flex;flex-direction:column;align-items:center;gap:8px;margin:0 auto 20px}.lr-arcade-brand>span,.lr-game-caption{font:600 10px 'Poppins',sans-serif;letter-spacing:.22em;color:#83c9c7}.lr-arcade-brand .lr-monogram{width:clamp(105px,15vw,164px)}#main-menu .menu-grid{gap:clamp(8px,1.4vw,16px)}.btn-menu{border-radius:15px!important;border:1px solid #6fddda35!important;background:linear-gradient(145deg,#17283d,#0e1d2c)!important;box-shadow:inset 0 1px #ffffff12,0 8px 20px #0002;transition:transform .18s,box-shadow .18s,border-color .18s!important}.btn-menu:hover{transform:translateY(-3px);border-color:#21d9c6!important;box-shadow:0 12px 28px #00beaa25}.global-footer{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;padding:12px!important}.global-footer .lr-monogram{width:90px}button{touch-action:manipulation}@media(max-width:600px){.menu-content{border-radius:20px;padding:15px}.lr-arcade-brand{margin-bottom:12px}.btn-menu{min-height:48px}} </style>
+<!-- ALL Create by LamberthRumpaidus | Inspection deterrent (not a security boundary) -->
+<script id="lr-inspection-guard">
+(()=>{'use strict';
+  if(window.__lrInspectionGuard)return;
+  window.__lrInspectionGuard=true;
+  // Preserve keyboard navigation, text editing, copying, and game controls.
+  const interactive='a,button,input,textarea,select,option,[contenteditable]:not([contenteditable="false"]),canvas,video,audio,pre,code,[role="application"],[role="log"],[role="button"]';
+  document.addEventListener('contextmenu',event=>{
+    if(event.target instanceof Element&&event.target.closest(interactive))return;
+    if(event.cancelable)event.preventDefault();
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.isComposing)return;
+    const key=String(event.key||'').toLowerCase();
+    const command=event.ctrlKey||event.metaKey;
+    const developerShortcut=key==='f12'||
+      (command&&event.shiftKey&&['i','j','c','k'].includes(key))||
+      (event.metaKey&&event.altKey&&['i','j','c','u'].includes(key))||
+      (command&&!event.shiftKey&&!event.altKey&&key==='u');
+    if(developerShortcut&&event.cancelable)event.preventDefault();
+  },true);
+})();
+</script>
+</head>
 
 <body>
     <div id="arcade-toast" class="arcade-toast" role="status" aria-live="polite"></div><div id="pause-screen" style="display:none;">
